@@ -1,0 +1,7 @@
+{
+  "name": "bicipartes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
