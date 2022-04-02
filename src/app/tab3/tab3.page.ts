@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import * as Leaflet from 'leaflet';
 import { Router } from '@angular/router';
-import { Auth, isSignInWithEmailLink } from '@angular/fire/auth';
+import { Auth, onAuthStateChanged } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-tab3',
@@ -13,8 +13,19 @@ export class Tab3Page {
   map: Leaflet.Map;
   constructor(
     private modalCTRL:ModalController,
-    private route: Router
-  ) {}
+    private route: Router,
+    private auth: Auth
+  ) {
+    this.auth.onAuthStateChanged(function (estado) {
+      if(!estado){
+       document.getElementById('txtAuth').innerHTML="Ingresar"
+       document.getElementById('btnRegister').setAttribute('disabled', 'false') 
+      }else{
+        document.getElementById('txtAuth').innerHTML="Perfil"
+        document.getElementById('btnRegister').setAttribute('disabled', 'true')
+      }
+    })
+  }
 
   ionViewDidEnter() { 
     this.leafletMap(); 
@@ -22,21 +33,13 @@ export class Tab3Page {
   leafletMap() {
     this.map = new Leaflet.Map('mapId').setView([22.7641114, -102.4966424], 19);
     Leaflet.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-      attribution: 'edupala.com'
+      attribution: ''
     }).addTo(this.map);
     
   }
 
   ionViewWillLeave() {
     this.map.remove();
-  }
-
-  very(){
-    if(isSignInWithEmailLink){
-      console.log(false)
-    }else{
-      console.log(true)
-    }
   }
 
   async singin(){

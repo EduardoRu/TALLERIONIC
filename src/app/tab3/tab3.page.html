@@ -5,18 +5,18 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
-  
   <div >
     <ion-grid>
       <ion-row style="align-items: center;">
         <ion-col>
           <ion-button (click)="singin()" expand="block" shape="round">
-            Ingresar
+            <p id="txtAuth"></p>
           </ion-button>
         </ion-col>
         <ion-col>
-          <ion-button (click)="singup()" expand="block" shape="round">
+          <ion-button id="btnRegister" (click)="singup()" expand="block" shape="round">
             Registrarte
           </ion-button>
         </ion-col>

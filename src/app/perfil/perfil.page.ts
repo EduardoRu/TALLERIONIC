@@ -26,6 +26,8 @@ export class PerfilPage implements OnInit {
     this.router.navigateByUrl('/', {replaceUrl: true});
   }
 
-
+  regresar(){
+    this.router.navigateByUrl('/tabs/tab3', {replaceUrl: true});
+  }
 
 }

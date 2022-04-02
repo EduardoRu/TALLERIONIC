@@ -64,6 +64,6 @@ export class SinginPage implements OnInit {
   }
 
   async registrar() {
-    await this.router.navigateByUrl('singup');
+    await this.router.navigateByUrl('singup', {replaceUrl: true});
   }
 }

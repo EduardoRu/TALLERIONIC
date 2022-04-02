@@ -79,7 +79,7 @@ export class SingupPage implements OnInit {
   }
 
   async ingresar(){
-    await this.router.navigateByUrl('singin')
+    await this.router.navigateByUrl('singin', {replaceUrl: true})
   }
 }
 
