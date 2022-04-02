@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastController, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,18 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
-
+  constructor(
+    private toast:ToastController
+  ) {
+  }
+  /*
+  async message(){
+    const toast = await this.toast.create({
+      message: "Desliza a la derecha para abrir el menú",
+      color: "tertiary",
+      duration: 1000
+    });
+    await toast.present();
+  }
+  */
 }

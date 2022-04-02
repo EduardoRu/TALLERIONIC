@@ -1,17 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Infromación adicional
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+  <div >
+    <ion-grid>
+      <ion-row style="align-items: center;">
+        <ion-col>
+          <ion-button (click)="singin()" expand="block" shape="round">
+            Ingresar
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="singup()" expand="block" shape="round">
+            Registrarte
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-card style="text-align: center;">
+    <ion-card-header>
+      <ion-card-title style="font-size: 30px;">
+        Dirección
+      </ion-card-title>
+      <ion-card-subtitle>
+        <div id="mapId" style="height: 280px;">
+        </div>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content style="font-size: large;">
+      Avenida Barones #31 <br>
+      Colonia Las Americas <br>
+      Dueño Eleazar Ruelas Martell
+    </ion-card-content>
+  </ion-card>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>

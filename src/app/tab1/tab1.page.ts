@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -6,7 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
-  constructor() {}
-
+  contSec:number;
+  constructor(
+    private menu:MenuController,
+  ) {
+  }
+  
+  async openMenu() {
+    await this.menu.open();
+  }
 }
