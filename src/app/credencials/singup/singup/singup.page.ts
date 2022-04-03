@@ -58,6 +58,7 @@ export class SingupPage implements OnInit {
 
     if(user){
       this.modalCTRL.dismiss();
+      this.router.navigateByUrl('perfil')
       const toast = this.toastCTRL.create({
         message: "Usuario creado con éxito",
         color: "success",

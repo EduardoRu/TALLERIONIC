@@ -49,4 +49,8 @@ export class Tab3Page {
   async singup(){
    await this.route.navigateByUrl('singup');
   }
+
+  async soporte(){
+    await this.route.navigateByUrl('soporte');
+  }
 }

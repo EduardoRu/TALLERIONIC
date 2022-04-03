@@ -35,11 +35,14 @@ export class CitaPage implements OnInit {
   }
 
   async agregaCita(){
-    
     const loadgin = await this.loadCTRL.create();
     await loadgin.present();
-    if (!this.datosCita.value) {
-      this.alerta('Registro fallido', 'Favor de volverlo a intentar')
+    if (
+    !this.datosCita.value['nombre'] || 
+    !this.datosCita.value['problema'] || 
+    !this.datosCita.value['fechaRecibo']
+    ) {
+      this.alerta('Registro fallido', 'Favor de completar los datos')
       await loadgin.dismiss();
     }else{
       const cita = await this.dataService.addcita(this.datosCita.value);

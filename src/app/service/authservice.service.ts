@@ -3,7 +3,8 @@ import { Auth } from '@angular/fire/auth';
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
-  signOut
+  signOut,
+  deleteUser
 } from 'firebase/auth';
 
 @Injectable({
@@ -43,6 +44,16 @@ export class AuthserviceService {
 
   async salida(){
     return signOut(this.auth);
+  }
 
+  async eliminar(user){
+    try{
+      const userREF = deleteUser(
+        user
+      );
+      return userREF;
+    }catch(err){
+      return null
+    }
   }
 }

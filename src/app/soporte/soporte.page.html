@@ -1,9 +1,46 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>soporte</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Soporte</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <h2 style="text-align: center;">
+    Soporte de la aplicaicón
+  </h2>
+  <ion-card style="text-align: center;">
+    <ion-card-header>
+      <ion-card-title>Atención</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Ingresa cualquier queja o sugerencia
+        que tengas con la aplciación, tus 
+        opiniones nos ayudan a mejorar tu
+         experencia como usuario</p>
+    </ion-card-content>
+  </ion-card>
+  <br> 
+  <form action="" style="padding-left: 10px; padding-right: 10px;" [formGroup]="soporte">
+    <ion-item hidden>
+      <ion-input formControlName="nombre" value="{{nombre}}"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="floating">Problema/Sugerencia</ion-label>
+      <ion-input formControlName="problema"></ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label position="floating">Descripicón</ion-label>
+      <ion-textarea rows="6" cols="20" placeholder="Ingresa más datos del problema aquí..." formControlName="descripcion"></ion-textarea>
+    </ion-item>
+    <br>
+    <ion-button (click)="enviarSug()" expand="full">
+      Agregar sugerencia
+    </ion-button>
+  </form>
 </ion-content>

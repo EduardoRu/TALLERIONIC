@@ -1,10 +1,16 @@
-<app-header nomCategoria="Superior"></app-header>
+<app-header nomCategoria="Frontal">
+</app-header>
 
+<ion-router-outlet id="main-content"></ion-router-outlet>
 
-<ion-content>
-
-</ion-content>
-<div class="ion-page" id="main-content">
-</div>
-<ion-router-outlet id="main"></ion-router-outlet>
-
+<ion-content [fullscreen]="true">
+    <ion-card *ngFor="let a of articulos" (click)="info(a)">
+      <img src="{{a.img}}">
+      <ion-card-header>
+        <ion-card-title>{{a.nombre}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Precio: {{a.precio}}$
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

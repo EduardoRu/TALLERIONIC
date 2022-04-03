@@ -14,7 +14,8 @@ export interface Users{
   id?:string;
   nombre:string;
   email:string;
-  contrasena:string;
+  password:string;
+  bicicleta:string;
 }
 
 export interface Cita{
@@ -34,6 +35,13 @@ export interface producto{
   precio: number;
 }
 
+export interface Sugerencia{
+  id?: string;
+  nombre: string;
+  problema: string;
+  descripcion: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,6 +53,21 @@ export class FirebaseService {
 
   getProductoArticulo():Observable<producto[]>{
     const prodREF = collection(this.firestore, 'productos_servicios/productos/articulos');
+    return collectionData(prodREF, {idField:'id'}) as Observable<producto[]>;
+  }
+
+  getProductoCentral():Observable<producto[]>{
+    const prodREF = collection(this.firestore, 'productos_servicios/productos/central');
+    return collectionData(prodREF, {idField:'id'}) as Observable<producto[]>;
+  }
+
+  getProductoInferior():Observable<producto[]>{
+    const prodREF = collection(this.firestore, 'productos_servicios/productos/inferior');
+    return collectionData(prodREF, {idField:'id'}) as Observable<producto[]>;
+  }
+
+  getProductoFrontal():Observable<producto[]>{
+    const prodREF = collection(this.firestore, 'productos_servicios/productos/frontal');
     return collectionData(prodREF, {idField:'id'}) as Observable<producto[]>;
   }
 
@@ -71,7 +94,12 @@ export class FirebaseService {
   }
   updateUser(user:Users){
     const userREF = doc(this.firestore, `usuarios/${user.id}`);
-    return updateDoc(userREF, {nombre: user.nombre, email:user.email, constrasena: user.contrasena});
+    return updateDoc(userREF, {nombre: user.nombre, email:user.email, constrasena: user.password});
+  }
+
+  addSugerencia(sugerencia: Sugerencia){
+    const sugREF = collection(this.firestore, 'sugerencias');
+    return addDoc(sugREF, sugerencia);
   }
   
 }

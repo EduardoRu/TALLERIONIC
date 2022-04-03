@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
+import { CentralPage } from 'src/app/productos/central/central.page';
+import { ArticulosPage } from 'src/app/productos/articulos/articulos.page';
+import { InferiorPage } from 'src/app/productos/inferior/inferior.page';
+import { Tab1Page } from 'src/app/tab1/tab1.page';
 
 
 @Component({
@@ -14,7 +18,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private menu:MenuController,
-    private route:Router
+    private route:Router,
+    private modealCTRL: ModalController
   ) { }
 
   ngOnInit() {
