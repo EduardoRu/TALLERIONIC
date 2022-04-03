@@ -46,6 +46,7 @@ export interface Servicio{
   id?: string;
   nombre: string;
   desc: string;
+  precio: number;
 }
 
 @Injectable({
@@ -56,6 +57,11 @@ export class FirebaseService {
   constructor(
     private firestore:Firestore
   ) { }
+
+  getServicios():Observable<Servicio[]>{
+    const serREF = collection(this.firestore, 'productos_servicios/servicios/servicios');
+    return collectionData(serREF, {idField:'id'}) as Observable<Servicio[]>
+  }
 
   getProductoArticulo():Observable<producto[]>{
     const prodREF = collection(this.firestore, 'productos_servicios/productos/articulos');

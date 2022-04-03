@@ -7,8 +7,28 @@
         </ion-buttons>
         <ion-title>Servicios</ion-title>
     </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar debounce="500" (ionChange)="_ionChange($event)"></ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    
+    <ion-list>
+        <ion-list-header>
+            <ion-label>
+                <h1 style="text-align: center;">Lista de servicios</h1>
+            </ion-label>
+        </ion-list-header>
+        <br>
+        <ion-item *ngFor="let s of servicios" (click)="info(s)">
+            <ion-avatar slot="start">
+                <ion-icon name="hammer-outline" style="font-size: 35px;"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+                <h2>{{s.nombre}}</h2>
+                <p>{{s.desc}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>

@@ -43,16 +43,16 @@ export class CitaPage implements OnInit {
     !this.datosCita.value['fechaRecibo']
     ) {
       this.alerta('Registro fallido', 'Favor de completar los datos')
-      await loadgin.dismiss();
+      loadgin.dismiss();
     }else{
       const cita = await this.dataService.addcita(this.datosCita.value);
       if(cita){
-        await loadgin.dismiss();
-        await this.modalctrl.dismiss();
+        loadgin.dismiss();
+        this.route.navigateByUrl('tabs/tab2', {replaceUrl:true})
         this.alerta('Cita agregada con exito', 'Favor de tomar captura a su folio: ' + this.myNumeroAleatorio)
       }else{
         this.alerta('Registro fallido', 'Favor de volverlo a intentar')
-        await loadgin.dismiss();
+        loadgin.dismiss();
       }
     }
   }
