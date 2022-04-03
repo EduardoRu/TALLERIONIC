@@ -42,6 +42,12 @@ export interface Sugerencia{
   descripcion: string;
 }
 
+export interface Servicio{
+  id?: string;
+  nombre: string;
+  desc: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
