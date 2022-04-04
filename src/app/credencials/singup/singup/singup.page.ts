@@ -44,7 +44,8 @@ export class SingupPage implements OnInit {
     this.credenciales = this.fb.group({
       nombre:['',[Validators.required, Validators.minLength(10)]],
       email:['', [Validators.required, Validators.email]],
-      password:['', [Validators.required, Validators.minLength(4)]]
+      password:['', [Validators.required, Validators.minLength(4)]],
+      bicicleta:['']
     })
   }
 

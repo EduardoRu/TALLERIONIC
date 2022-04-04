@@ -19,6 +19,7 @@ export class PerfilPage implements OnInit {
   id:String;
   user: Users[];
   userREF:any;
+  userR:any
 
 
   constructor(
@@ -28,7 +29,8 @@ export class PerfilPage implements OnInit {
     private loadingCTRL: LoadingController,
     private atuhUser: Auth,
     private dataService: FirebaseService,
-    private tastCTRL: ToastController 
+    private tastCTRL: ToastController,
+    private authUser: Auth
   ) { }
 
   
@@ -37,6 +39,9 @@ export class PerfilPage implements OnInit {
     this.atuhUser.onAuthStateChanged(function (user) {
       email = user.email;
     });
+    this.authUser.onAuthStateChanged(user=>{
+      this.userR = user
+    })
     var userREF;
     this.dataService.getUsuarios().subscribe(res=>{
       res.forEach(element => {
@@ -67,17 +72,20 @@ export class PerfilPage implements OnInit {
         {
           name:'nombre',
           placeholder: String(this.nombre),
-          type:'text'
+          type:'text',
+          value: this.nombre
         },
         {
           name:'email',
           placeholder:String(this.email),
-          type:'text'
+          type:'text',
+          value: this.email
         },
         {
           name:'password',
           placeholder:String(this.contrasena),
-          type:'text'
+          type:'text',
+          value: this.contrasena
         }
       ],
       buttons:[
@@ -97,19 +105,23 @@ export class PerfilPage implements OnInit {
                 bicicleta:""
               }
               )
+              this.auth.updateUser(this.userR, res.email);
+              this.auth.updatePasswor(this.userR, res.password);
             //console.log('El contacto se esta guardando');
           }
         }
       ]
     });
     await alert.present();
+    
   }
 
   async eliminar(){
     const loading = await this.loadingCTRL.create();
     await loading.present();
 
-    this.dataService.deletUser(this.userREF);
+    this.auth.eliminar(this.userR);
+    this.dataService.deletUser(this.userREF)
     await loading.dismiss();
     this.auth.salida();
     this.router.navigateByUrl('/', {replaceUrl: true});

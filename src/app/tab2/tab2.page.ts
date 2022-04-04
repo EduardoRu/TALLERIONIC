@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonSearchbar, MenuController, ModalController } from '@ionic/angular';
+import { AlertController, IonSearchbar, MenuController, ModalController } from '@ionic/angular';
 import { CitaPage } from '../cita/cita.page';
 import { FirebaseService, Servicio } from '../service/firebase.service';
 
@@ -21,7 +21,8 @@ export class Tab2Page {
     private menuCTRL:MenuController,
     private modalCTRL: ModalController,
     private route: Router,
-    private dataService: FirebaseService
+    private dataService: FirebaseService,
+    private alertCTRL: AlertController
   ) {
     this.dataService.getServicios().subscribe(res=>{
       this.servicios = res;
@@ -42,4 +43,15 @@ export class Tab2Page {
       })
     }
   }
+
+  async info(servicio:Servicio) {
+    const alert = await this.alertCTRL.create({
+      header: servicio.nombre,
+      subHeader: "Precio: " + servicio.precio + "$",
+      message: servicio.desc,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
 }

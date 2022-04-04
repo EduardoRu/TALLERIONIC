@@ -106,7 +106,7 @@ export class FirebaseService {
   }
   updateUser(user:Users){
     const userREF = doc(this.firestore, `usuarios/${user.id}`);
-    return updateDoc(userREF, {nombre: user.nombre, email:user.email, constrasena: user.password});
+    return updateDoc(userREF, {nombre: user.nombre, email:user.email, password: user.password, bicicleta: user.bicicleta});
   }
 
   addSugerencia(sugerencia: Sugerencia){

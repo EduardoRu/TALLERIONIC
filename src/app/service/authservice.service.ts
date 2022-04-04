@@ -4,7 +4,9 @@ import {
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   signOut,
-  deleteUser
+  deleteUser,
+  updateEmail,
+  updatePassword
 } from 'firebase/auth';
 
 @Injectable({
@@ -54,6 +56,29 @@ export class AuthserviceService {
       return userREF;
     }catch(err){
       return null
+    }
+  }
+
+  async updateUser(user, email){
+    try{
+      const emailRef = updateEmail(
+        user,
+        email
+      );
+      return emailRef
+    }catch(err){
+      return null
+    }
+  }
+
+  async updatePasswor(user, password){
+    try{
+      const passREF = updatePassword(
+        user,
+        password
+      )
+    }catch(err){
+
     }
   }
 }

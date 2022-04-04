@@ -43,15 +43,23 @@ export class SinginPage implements OnInit {
   async ingreso() {
     const loading = await this.loadingCTRL.create();
     await loading.present();
+    try{
+      const user = await this.authService.ingreso(this.credenciales.value)
 
-    const user = await this.authService.ingreso(this.credenciales.value);
-    await loading.dismiss();
-
-    if (user) {
-      this.router.navigateByUrl('/perfil')
-    } else {
-      this.alerta('Fallo al iniciar', 'Intentelo de nuveo');
+      if (user) {
+        this.router.navigateByUrl('/perfil')
+        await loading.dismiss();
+      } else {
+        this.alerta('Fallo al iniciar', 'Intentelo de nuveo');
+        await loading.dismiss();
+      }
+    } catch(err){
+      await loading.dismiss();
+      this.alerta('Fallo al iniciar', 'Favor de verificar sus datos');
     }
+    
+
+    
   }
 
   async alerta(header, message) {
